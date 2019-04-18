@@ -1,8 +1,8 @@
 {
-  "name": "jira-cl",
+  "name": "@clicktherapeutics-org/jira-cli",
   "version": "1.2.0",
   "description": "A Jira command line client",
-  "author": "Eduardo Henao & Miguel Henao",
+  "author": "Originally: Eduardo Henao & Miguel Henao. Edited by Sasinda",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -29,11 +29,12 @@
     "commander": "^2.9.0",
     "fs-promise": "^1.0.0",
     "inquirer": "^1.2.3",
-    "jira-client": "^4.2.0",
+    "jira-client": "^6.7.1",
     "moment": "^2.19.3",
     "opn": "^5.4.0",
     "request-promise": "^4.2.2",
-    "rimraf": "^2.5.4"
+    "rimraf": "^2.5.4",
+    "terminal-link": "^1.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
