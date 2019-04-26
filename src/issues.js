@@ -221,12 +221,13 @@ export default class JiraIssues {
   showIssues(issues) {
     const table = new Table({
       chars: jira.tableChars,
-      head: ['Key', 'Status', 'Summary']
+      head: ['Key', 'Status', 'Summary', 'Assignee']
     });
-
+    let i=2;
     issues.forEach(function (issue) {
+      if(i>0){console.log(issue); i=i-1;}
       table.push(
-        [color.blue(issue.key), color.green(issue.fields.status.name), issue.fields.summary]
+        [color.blue(issue.key), color.green(issue.fields.status.name), issue.fields.summary, issue.fields.assignee.name]
       );
     });
 
@@ -278,7 +279,6 @@ export default class JiraIssues {
     if (details.length>0){
       const gitDetails=details[0];
       const pullRequests = gitDetails.pullRequests ||[];
-      console.log(JSON.stringify(pullRequests));
       table.push({'Pull Requests': pullRequests.map((pr)=>pr.status+': '+terminalLink(pr.name, pr.url)).join('\n')});
     }
     // Start with detail table
@@ -314,12 +314,8 @@ export default class JiraIssues {
     const _this = this;
     let jql;
 
-    if (user) {
-      jql = 'assignee = ' + user + ' and resolution = Unresolved';
-    } else {
-      jql = 'assignee = currentUser() and resolution = Unresolved';
-    }
-
+    const filter_user = user?user:'currentUser()';
+    jql = `( assignee = ${filter_user} OR (watcher = ${filter_user} AND status=Review) ) AND resolution = Unresolved ORDER BY status DESC`;
     jira.api.searchJira(jql).then(function (r) {
 
       if (typeof r.warningMessages !== 'undefined') {

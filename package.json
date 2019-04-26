@@ -1,6 +1,6 @@
 {
-  "name": "@clicktherapeutics-org/jira-cli",
-  "version": "1.2.0",
+  "name": "@click-therapeutics-org/jira-cli",
+  "version": "1.3.2",
   "description": "A Jira command line client",
   "author": "Originally: Eduardo Henao & Miguel Henao. Edited by Sasinda",
   "license": "MIT",
