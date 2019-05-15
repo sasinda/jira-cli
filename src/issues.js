@@ -223,14 +223,11 @@ export default class JiraIssues {
       chars: jira.tableChars,
       head: ['Key', 'Status', 'Summary', 'Assignee']
     });
-    let i=2;
     issues.forEach(function (issue) {
-      if(i>0){console.log(issue); i=i-1;}
       table.push(
         [color.blue(issue.key), color.green(issue.fields.status.name), issue.fields.summary, issue.fields.assignee.name]
       );
     });
-
     console.log(table.toString());
   }
 
